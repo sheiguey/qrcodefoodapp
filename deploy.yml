@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qr-frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: qr-frontend
+  template:
+    metadata:
+      labels:
+        app: qr-frontend
+    spec:
+      containers:
+      - name: qr-frontend-container
+        image: $BUILT_IMAGE
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "200m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-frontend-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: qr-frontend

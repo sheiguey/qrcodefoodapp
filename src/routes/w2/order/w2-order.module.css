@@ -1,0 +1,33 @@
+.clearButton {
+    color: var(--color-red);
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.summary {
+    background: #FFFFFF;
+    border-radius: 10px 10px 0px 0px;
+    padding: 0 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 32px)
+}
+
+.backButton {
+    background-color: #232B2F;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border:none;
+    color: #fff;
+    padding: 0;
+    aspect-ratio: 1;
+}
