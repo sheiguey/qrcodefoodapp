@@ -14,8 +14,8 @@ const Menu = () => {
   const queryClient = useQueryClient();
   const [selectedFood, setSelectedFood] = useState(null);
   const [searchParams] = useSearchParams();
-  const { data, isLoading } = useQuery(["productlist"], () =>
-    fetcher(
+  const { data, isLoading } = useQuery(["productlist"], async () =>
+    await fetcher(
       `v1/rest/branch/products?shop_id=${
         searchParams.get("shop_id") || SHOP_ID
       }`
