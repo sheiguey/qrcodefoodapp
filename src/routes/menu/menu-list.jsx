@@ -31,7 +31,7 @@ const Home = () => {
       ["menucategories", searchParams.get("shop_id"), debouncedSearch],
       ({ pageParam = 1 }) =>
         fetcher(
-          `api/v1/rest/shops/${searchParams.get("shop_id") || SHOP_ID}/categories`,
+          `v1/rest/shops/${searchParams.get("shop_id") || SHOP_ID}/categories`,
           {
             ...params,
             page: pageParam,

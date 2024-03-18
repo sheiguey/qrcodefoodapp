@@ -16,7 +16,7 @@ const Menu = () => {
   const [searchParams] = useSearchParams();
   const { data, isLoading } = useQuery(["productlist"], async () =>
     await fetcher(
-      `api/v1/rest/branch/products?shop_id=${
+      `v1/rest/branch/products?shop_id=${
         searchParams.get("shop_id") || SHOP_ID
       }`
     ).then((res) => res.json())
