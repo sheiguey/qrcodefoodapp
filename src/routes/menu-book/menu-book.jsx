@@ -11,28 +11,13 @@ import { fetcher } from "../../utils/fetcher";
 import classes from "./menu-book.module.css";
 
 const MenuBook = () => {
-  let productList = [];
-  let dataMap ;
-  let title;
   const [searchParams] = useSearchParams();
   const { data, isLoading } = useQuery(["productlist"], () =>
-    fetcher(`v1/rest/shops/${searchParams.get('shop_id') || SHOP_ID}/products`, { lang: "en" }).then((res) =>{
-      const result = res.json();
-      console.log(result);
-      return result;
-    }
+    fetcher(`v1/rest/shops/${searchParams.get('shop_id') || SHOP_ID}/products`, { lang: "en" }).then((res) =>
+      res.json()
     )
   );
-  if(data.length>0){
-    productList = createChunk(data.data.all);
-    dataMap =productList.map((list, i) => (
-      <BookPage key={i} number={i} list={list} />
-    ));
-    title =data.data.all.map((list) => (
-      <Typography variant="subtitle1" key={list.id}>{list.translation?.title}</Typography>
-    ));
-  }
-  
+  const productList = createChunk(data?.data?.all);
   if (isLoading) {
     return (
       <div className="loading">
@@ -64,10 +49,14 @@ const MenuBook = () => {
             Restaurant menu
           </Typography>
           <Stack justifyContent="center" alignItems="center" gap={4}>
-            {title}
+            {data?.data?.all.map((list) => (
+              <Typography variant="subtitle1" key={list.id}>{list.translation?.title}</Typography>
+            ))}
           </Stack>
         </div>
-             {dataMap}
+        {productList.map((list, i) => (
+          <BookPage key={i} number={i} list={list} />
+        ))}
         <BookCover>The end</BookCover>
       </HTMLFlipBook>
     </Container>

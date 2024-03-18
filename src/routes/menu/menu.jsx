@@ -9,17 +9,17 @@ import { SHOP_ID } from "../../config/site-settings";
 import { useState } from "react";
 import { FoodDetail } from "../../components/food-detial";
 
-const Menu =  () => {
+const Menu = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const [selectedFood, setSelectedFood] = useState(null);
   const [searchParams] = useSearchParams();
-  const { data, isLoading } = useQuery(["productlist"], async () =>
-    await fetcher(
+  const { data, isLoading } = useQuery(["productlist"], () =>
+    fetcher(
       `v1/rest/branch/products?shop_id=${
         searchParams.get("shop_id") || SHOP_ID
       }`
-    )
+    ).then((res) => res.json())
   );
   const productList = data?.data.find(
     (product) => product.id.toString() === id
@@ -31,7 +31,6 @@ const Menu =  () => {
     });
     setSelectedFood(product.uuid);
   };
-
 
   if (isLoading) {
     return (

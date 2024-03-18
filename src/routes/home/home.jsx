@@ -39,11 +39,6 @@ const Home = () => {
       image: "/food1.jpeg",
     },
     {
-      title: "js test",
-      path: "/test",
-      image: "/food.jpeg",
-    },
-    {
       title: "Call the waiter",
       onClick: () => {
         mutate({
