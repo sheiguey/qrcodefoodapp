@@ -25,10 +25,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const Order = () => {
   const [searchParams] = useSearchParams();
   const { data: currencies } = useQuery(["currencylist"], () =>
-    fetcher("v1/rest/currencies").then((res) => res.json())
+    fetch("https://api-food.dev.fd-squad.com/api/v1/rest/currencies").then((res) => res.json())
   );
   const { data: prevOrders, prevOrderLoading } = useQuery(["orderlist"], () =>
-    fetcher(`v1/rest/orders/table/${searchParams.get("table_id")}`).then(
+    fetch(`https://api-food.dev.fd-squad.com/api/v1/rest/orders/table/${searchParams.get("table_id")}`).then(
       (res) => res.json()
     )
   );

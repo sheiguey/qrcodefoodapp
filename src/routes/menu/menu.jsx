@@ -15,8 +15,8 @@ const Menu = () => {
   const [selectedFood, setSelectedFood] = useState(null);
   const [searchParams] = useSearchParams();
   const { data, isLoading } = useQuery(["productlist"], async () =>
-    await fetcher(
-      `v1/rest/branch/products?shop_id=${
+    await fetch(
+      `https://api-food.dev.fd-squad.com/api/v1/rest/branch/products?shop_id=${
         searchParams.get("shop_id") || SHOP_ID
       }`
     ).then((res) => res.json())

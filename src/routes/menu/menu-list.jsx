@@ -30,8 +30,8 @@ const Home = () => {
     useInfiniteQuery(
       ["menucategories", searchParams.get("shop_id"), debouncedSearch],
       ({ pageParam = 1 }) =>
-        fetcher(
-          `v1/rest/shops/${searchParams.get("shop_id") || SHOP_ID}/categories`,
+        fetch(
+          `https://api-food.dev.fd-squad.com/api/v1/rest/shops/${searchParams.get("shop_id") || SHOP_ID}/categories`,
           {
             ...params,
             page: pageParam,
