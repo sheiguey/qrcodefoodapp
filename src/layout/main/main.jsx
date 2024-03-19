@@ -25,7 +25,7 @@ export const MainLayout = () => {
   const shopId = searchParams.get("shop_id");
   const { pathname } = useLocation();
   const { data: shopDetail, isLoading } = useQuery(["shopDetail"], () =>
-    fetcher(`v1/rest/shops/${shopId || SHOP_ID}`).then((res) => res.json()),
+    fetcher(`https://api-food.dev.fd-squad.com/api/v1/rest/shops/v1/rest/shops/${shopId || SHOP_ID}`).then((res) => res.json()),
   );
   const navigate = useNavigate();
   return (
